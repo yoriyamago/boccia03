@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <%- include('_head', {meta: {title: "オンラインボッチャ"}}) %>
+  <body>
+  
+
+      <!--文字の表示-->
+      <div class="wrap">
+        <div class="print">
+          <h3 class="text-center">ボッチャプレイヤーは君だ！
+          </h3>
+          <div>
+            <input type="text" id="text" value="お名前は？"" placeholder="Input in freely">
+    
+            <button class="btn cp_btn" id="showtime">決まり！</button>
+          </div>
+        </div>
+        <div class="led">
+          <h3 class="text-center">どちらのチーム？</h3>
+          <button class="btn red_btn"" id="red">赤チーム</button>
+          <button class="btn blue_btn" id="blue">青チーム</button>
+        </div>
+        <br><br>
+        <div class="led">
+          <h3 class="text-center">どこを狙う？</h3>
+          <button class="btn position_btn" id="left">左へ</button>
+          <button class="btn position_btn" id="right">右へ</button>
+          <br><br>
+          <button class="btn position_btn" id="up">上へ</button>
+          <button class="btn position_btn" id="down">下へ</button>
+          <br><br>
+          <br>
+          <h3 class="text-center">最後は思いっきり！</h3>
+          <button class="btn cp_btn" id="ignition">発射！</button>
+        </div>
+        </div>
+    <script src="/javascripts/main.js"></script>
+  </body>
+</html>

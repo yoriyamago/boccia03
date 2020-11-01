@@ -1,0 +1,5 @@
+Host github github.com
+  HostName github.com
+  IdentityFile ~/.ssh/#秘密鍵のファイル名
+  User git
+  Port 22

@@ -19,7 +19,7 @@ wss.on('connection', socket => {
   console.log('connected!');
   socket.onmessage = (m) => {
     message = m.data;
-     console.log("aaa:::" + message)
+     console.log("aaa::" + message)
      };
      socket.send(JSON.stringify(message))
   socket.on('message', ms => {

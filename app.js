@@ -21,9 +21,9 @@ wss.on('connection', socket => {
     message = m.data;
      console.log("aaa:::" + message)
      };
-     socket.send(message)
+     socket.send(JSON.stringify(message))
   socket.on('message', ms => {
-    console.log(ms);
+    console.log("ss:::" +ms);
   });
 
   socket.on('close', () => {

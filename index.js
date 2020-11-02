@@ -1,17 +1,28 @@
-const server = require("ws").Server;
-const s = new server({ port: 5001 });
+var WebSocketServer = require("ws").Server
+var http = require("http")
+var express = require("express")
+var app = express()
+var port = process.env.PORT || 5000
 
-s.on("connection", ws => {
-    ws.on('message', message => {
-        // クライアントから受信
-        const { name, age } = JSON.parse(message);
-        console.log(name, age);
+app.use(express.static(__dirname + "/"))
 
-        // クライアントへ送信
-        ws.send(JSON.stringify({
-            hoge: true,
-            fuga: [1, 3, 5],
-            piyo: 0.5,
-        }));
-    });
-});
+var server = http.createServer(app)
+server.listen(port)
+
+console.log("http server listening on %d", port)
+
+var wss = new WebSocketServer({server: server})
+console.log("websocket server created")
+
+wss.on("connection", function(ws) {
+  var id = setInterval(function() {
+    ws.send(JSON.stringify(new Date()), function() {  })
+  }, 1000)
+
+  console.log("websocket connection open")
+
+  ws.on("close", function() {
+    console.log("websocket connection close")
+    clearInterval(id)
+  })
+})

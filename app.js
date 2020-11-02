@@ -1,22 +1,28 @@
-var express = require('express');
-var app = express();
-var http = require('http').Server(app);
-const io = require('socket.io')(http);
-const PORT = process.env.PORT || 7000;
+var WebSocketServer = require("ws").Server
+var http = require("http")
+var express = require("express")
+var app = express()
+var port = process.env.PORT || 5000
 
-app.get('/' , function(req, res){
-    res.sendFile(__dirname+'/index.html');
-});
+app.use(express.static(__dirname + "/"))
 
+var server = http.createServer(app)
+server.listen(port)
 
-io.on('connection',function(socket){
-  //受信
-  socket.on('message',function(msg){
-      console.log('message: ' + msg);
-      io.emit('message', msg);//send
-  });
-});
+console.log("http server listening on %d", port)
 
-http.listen(PORT, function(){
-    console.log('server listening. Port:' + PORT);
-});
+var wss = new WebSocketServer({server: server})
+console.log("websocket server created")
+
+wss.on("connection", function(ws) {
+  var id = setInterval(function() {
+    ws.send(JSON.stringify(new Date()), function() {  })
+  }, 1000)
+
+  console.log("websocket connection open")
+
+  ws.on("close", function() {
+    console.log("websocket connection close")
+    clearInterval(id)
+  })
+})

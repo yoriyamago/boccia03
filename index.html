@@ -1,34 +1,23 @@
 <html>
   <head>
-    <style>
-      body {
-        font-family: "Helvetica Neue", helvetica, arial;
-        padding: 15px;
-      }
-
-      ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-      }
-
-      ul li {
-        line-height: 1.4;
-      }
-    </style>
-
-    <script>
-      var host = location.origin.replace(/^http/, 'ws')
-      var ws = new WebSocket(host);
-      ws.onmessage = function (event) {
-        var li = document.createElement('li');
-        li.innerHTML = JSON.parse(event.data);
-        document.querySelector('#pings').appendChild(li);
-      };
-    </script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
   </head>
   <body>
     <h1>Pings</h1>
-    <ul id='pings'></ul>
+     <button class="btn red_btn"" id="red">赤チーム</button>
+     <button class="btn blue_btn" id="blue">青チーム</button>
   </body>
+  <script>
+    var host = location.origin.replace(/^http/, 'ws')
+      var ws = new WebSocket(host);
+      ws.onmessage = (m) => { console.log(m.data) };
+     
+    $('#red').click(async function () {
+      ws.send("red");
+    });
+    //青色
+  $('#blue').click(async function () {
+    ws.send("blue");
+  });
+     </script>
 </html>

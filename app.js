@@ -14,19 +14,19 @@ console.log("http server listening on %d", port)
 var wss = new WebSocketServer({server: server})
 console.log("websocket server created")
 
-
 wss.on('connection', socket => {
   console.log('connected!');
-  socket.onmessage = (m) => {
-    message = m.data;
-     console.log("aaa::" + message)
-     };
-     socket.send(JSON.stringify(message))
   socket.on('message', ms => {
-    console.log("ss:::" +ms);
+    wss.clients.forEach(client => {
+      client.send('Hello, this message comes from server!');
+      client.send(ms);
+      console.log("aaa::" + ms)
+      message = ms;
+    });
+
+    socket.on('close', () => {
+      console.log('good bye.');
+    });
   });
 
-  socket.on('close', () => {
-    console.log('good bye.');
-  });
 });

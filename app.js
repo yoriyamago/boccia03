@@ -3,7 +3,7 @@ var http = require("http")
 var express = require("express")
 var app = express();
 var port = process.env.PORT || 5000;
-
+var message = "";
 app.use(express.static(__dirname + "/"))
 
 var server = http.createServer(app)
@@ -17,7 +17,11 @@ console.log("websocket server created")
 
 wss.on('connection', socket => {
   console.log('connected!');
-
+  socket.onmessage = (m) => {
+    message = m.data;
+     console.log("aaa:::" + message)
+     };
+     socket.send(message)
   socket.on('message', ms => {
     console.log(ms);
   });

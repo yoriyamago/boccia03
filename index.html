@@ -10,7 +10,6 @@
   <script>
     var host = location.origin.replace(/^http/, 'ws')
       var ws = new WebSocket(host);
-      ws.onmessage = (m) => { console.log(m.data) };
      
     $('#red').click(async function () {
       ws.send("red");

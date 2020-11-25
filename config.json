@@ -1,0 +1,16 @@
+{
+  "appinfo": "BC",
+  "team": {
+    "white": "TCOL0",
+    "red": "TCOL1",
+    "blue":"TCOL2"
+  },
+  "name": "NAME",
+  "switch": {
+    "right": "RROT",
+    "left": "LROT",
+    "up": "RISE",
+    "down": "FALL",
+    "ign":"FIRE"
+  }
+}

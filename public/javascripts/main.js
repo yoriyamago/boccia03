@@ -16,7 +16,7 @@ ws.send("BC01TCOL2"+ end);
 
 //テキストボックス
 $("#showtime").on("click", function () {
-    ws.send("BC01NAME:" + $('#text').val() + end);
+    ws.send("BC01NAME" + $('#text').val() + end);
 });
 
 //スイッチ１

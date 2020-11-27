@@ -1,20 +1,47 @@
-var WebSocketServer = require("ws").Server;
-var http = require("http");
-var express = require("express");
-var session = require("express-session"); 
-var app = express();
-var port = process.env.PORT || 5000;
-var fs = require('fs');
-var path = require('path');
-var conf = JSON.parse(fs.readFileSync(path.join(__dirname, 'config.json'), 'utf8'));
+const WebSocketServer = require("ws").Server;
+const http = require("http");
+const express = require("express");
+const bodyParser = require("body-parser");
+const session = require("express-session"); 
+const app = express();
+const port = process.env.PORT || 5000;
+const fs = require('fs');
+const path = require('path');
+const passport = require('./auth');
+const indexRouter = require('./routes/index');
+const loginRouter = require('./routes/login');
+const flash = require('connect-flash');
+const conf = JSON.parse(fs.readFileSync(path.join(__dirname, 'config.json'), 'utf8'));
 
-var indexRouter = require('./routes/index');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.engine('htm', require('ejs').renderFile);
 app.engine('html', require('ejs').renderFile);
+app.use(express.static(__dirname + "/"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(flash());
+app.use(session({
+  secret: 'YOUR-SECRET-STRING',
+  resave: true,
+  saveUninitialized: true
+}));
+//app.use(passport.initialize());
+//app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// routing
 app.use('/', indexRouter);
+app.use('/login', loginRouter);
+
+const authMiddleware = (req, res, next) => {
+  if(req.isAuthenticated()) { // ログインしてるかチェック
+    next();
+  } else {
+    res.redirect(302, '/login');
+  }
+};
 
 // error handler
 app.use((err, req, res) => {
@@ -27,16 +54,6 @@ app.use((err, req, res) => {
    }
  });
 
- app.use(express.static(__dirname + "/"))
-
- app.use(session({
-  secret: "secret word",
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    maxAge: 60 * 1000
-  }
-  }));
 
 var server = http.createServer(app);
 server.listen(port);

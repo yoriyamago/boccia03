@@ -7,9 +7,9 @@ const app = express();
 const port = process.env.PORT || 5000;
 const fs = require('fs');
 const path = require('path');
-const passport = require('./auth');
+//const passport = require('./auth');
 const indexRouter = require('./routes/index');
-const loginRouter = require('./routes/login');
+//const loginRouter = require('./routes/login');
 const flash = require('connect-flash');
 const conf = JSON.parse(fs.readFileSync(path.join(__dirname, 'config.json'), 'utf8'));
 
@@ -20,28 +20,17 @@ app.engine('html', require('ejs').renderFile);
 app.use(express.static(__dirname + "/"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+//app.use(bodyParser.json());
 app.use(flash());
 app.use(session({
   secret: 'YOUR-SECRET-STRING',
   resave: true,
   saveUninitialized: true
 }));
-//app.use(passport.initialize());
-//app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // routing
 app.use('/', indexRouter);
-app.use('/login', loginRouter);
-
-const authMiddleware = (req, res, next) => {
-  if(req.isAuthenticated()) { // ログインしてるかチェック
-    next();
-  } else {
-    res.redirect(302, '/login');
-  }
-};
 
 // error handler
 app.use((err, req, res) => {

@@ -2,17 +2,22 @@
 <html>
   <%- include('_head', {meta: {title: "オンラインボッチャ　ログイン"}}) %>
   <body>
-    <h1>オンラインボッチャにようこそ！</h1>
-    
-    <form method="POST" action="/boccia">
-      <div>
-        <label for="aikotoba">合言葉は？：</label>
-        <input type="text" id="aikotoba" name="aikotoba" />
+    <div class="wrap">
+      <div class="print">
+        <div class="led">
+          <h3>オンラインボッチャへようこそ！</h3>
+          <br><br>
+          <form method="POST" action="/boccia">
+            <div>
+              <input type="text" id="aikotoba" name="aikotoba"  value="" placeholder="合言葉は？"/>
+              <input type="submit" value="ログイン" class = "Sblue_btn"/>
+            </div>
+          </form>
+          <% if (message && message.length !== 0) { %>
+            <div><span class="error"><%= message %></span></div>
+          <% } %>
+        </div>
       </div>
-      <input type="submit" value="ログイン" class="btn cp_btn"/>
-    </form>
-    <% if (message && message.length !== 0) { %>
-      <div><%= message %></div>
-    <% } %>
+    </div>
   </body>
 </html>

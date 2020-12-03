@@ -5,14 +5,14 @@
     <h1>オンラインボッチャにようこそ！</h1>
     
     <form method="POST" action="/boccia">
-      <label for="aikotoba" class="col-sm-2 col-form-label">合言葉は？：</label>
-      <div class="col-sm-10">
-        <input type="text" id="aikotoba" name="aikotoba"  class="form-control" />
+      <div>
+        <label for="aikotoba">合言葉は？：</label>
+        <input type="text" id="aikotoba" name="aikotoba" />
       </div>
-      <input type="submit" value="ログイン" />
+      <input type="submit" value="ログイン" class="btn cp_btn"/>
     </form>
     <% if (message && message.length !== 0) { %>
-      <div class="alert alert-danger"><%= message %></div>
+      <div><%= message %></div>
     <% } %>
   </body>
 </html>

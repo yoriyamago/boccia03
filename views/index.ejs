@@ -2,17 +2,35 @@
 <html lang="ja"></html>
 <html>
   <%- include('_head', {meta: {title: "オンラインボッチャ"}}) %>
-  <%- data %>
+ 
+ 
+  <input type="hidden" id="appSb" value=<%- data.appSb %>>
+  <input type="hidden" id="textName" value=<%- data.name %>>
+  <input type="hidden" id="teamRed" value=<%- data.team.red %>>
+  <input type="hidden" id="teamBlue" value=<%- data.team.blue %>>
+  <input type="hidden" id="teamWhite" value=<%- data.team.white %>>
+  <input type="hidden" id="sRingh" value=<%- data.switch.right %>>
+  <input type="hidden" id="sLeft" value=<%- data.switch.left %>>
+  <input type="hidden" id="sUp" value=<%- data.switch.up %>>
+  <input type="hidden" id="sDown" value=<%- data.switch.down %>>
+  <input type="hidden" id="sIgnt" value=<%- data.switch.ign %>>
+  <input type="hidden" id="flg" value=<%- data.appinfo %>>
 
   <body>
       <!--文字の表示-->
       <div class="wrap">
         <div class="print">
-          <h3 class="text-center">ボッチャプレイヤーは君だ！
-          </h3>
+          <div class="led">
+            <br><br>
+            <h3 class="text-center">ボッチャプレイヤーは君だ！ </h3>
+            <form method="POST" action="/logout">
+              <input type="submit" value="交代！"/>
+              <input type="text" id="appinfo" name="appinfo" value=<%- data.appinfo %>>
+            </form>
+          </div>
+          <br><br>
           <div>
-            <input type="text" id="text" value="お名前は？" placeholder="Input in freely">
-    
+            <input type="text" id="text" value="" placeholder="お名前は？">
             <button class="btn cp_btn" id="showtime">決まり！</button>
           </div>
         </div>
@@ -34,7 +52,10 @@
           <h3 class="text-center">最後は思いっきり！</h3>
           <button class="btn cp_btn" id="ignition">発射！</button>
         </div>
-        </div>
+
     <script src="/javascripts/main.js"></script>
   </body>
+  <style>
+  
+    </style>
 </html>

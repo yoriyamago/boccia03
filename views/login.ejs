@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <%- include('_head', {meta: {title: "オンラインボッチャ　ログイン"}}) %>
+  <body>
+    <h1>オンラインボッチャにようこそ！</h1>
+    
+    <form method="POST" action="/boccia">
+      <label for="aikotoba" class="col-sm-2 col-form-label">合言葉は？：</label>
+      <div class="col-sm-10">
+        <input type="text" id="aikotoba" name="aikotoba"  class="form-control" />
+      </div>
+      <input type="submit" value="ログイン" />
+    </form>
+    <% if (message && message.length !== 0) { %>
+      <div class="alert alert-danger"><%= message %></div>
+    <% } %>
+  </body>
+</html>

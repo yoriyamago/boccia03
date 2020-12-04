@@ -40,11 +40,30 @@ if(!HTMLElement.prototype.hold){
                   callback();
                 }
               },100);
+
+              
+              
               this.addEventListener('mouseup', function (event) {
                 event.preventDefault();
                 clearInterval(interval);
               });
           });
+
+          this.addEventListener('touchstart', function (event) {
+            event.preventDefault();
+            callback(); //event.preventDefaultでクリック等のイベントが解除されてしまうので、要素初タッチ時にも処理を行うようcallbackを設置しておく。
+            let time = 0;
+            const interval = setInterval(function(){
+              time += 100;
+              if(time > holdtime){
+                callback();
+              }
+            },100);
+            this.addEventListener('touchend', function (event) {
+              event.preventDefault();
+              clearInterval(interval);
+            });
+        });
       }
   });
 }

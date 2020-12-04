@@ -1,6 +1,7 @@
 
 body {
   padding: 20px 30px;
+  -webkit-touch-callout:none; 
 }
 button.cp_btn {
   display: inline-block;

@@ -168,7 +168,9 @@ h3 {
 .led .btn {
   width: 49%;
 }
-
+html {
+  touch-action: manipulation;
+}
 
 
 /*# sourceMappingURL=style.css.map */

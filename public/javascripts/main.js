@@ -68,9 +68,16 @@ if(!HTMLElement.prototype.hold){
   });
 }
 
-//スイッチ左長押し対応
+//スイッチ長押し対応
 const btnLeft  = document.querySelector('#left');
+const btnRight  = document.querySelector('#right');
+const btnUp = document.querySelector('#up');
+const btnDown  = document.querySelector('#down');
+
 btnLeft.hold(()=>{ws.send(appinfo + appSb + sLeft);},1000);
+btnRight.hold(()=>{ws.send(appinfo + appSb + sRingh);},1000);
+btnUp.hold(()=>{ws.send(appinfo + appSb + sUp);},1000);
+btnDown.hold(()=>{ws.send(appinfo + appSb + sDown);},1000);
 
 //交代
 $('#change').click(async function () {
@@ -99,7 +106,7 @@ $("#showtime").on("click", function () {
     //alert($('#text').val());
    }
 });
-
+/**
 //スイッチ１
 //$('#left').click(async function () {
 //ws.send(appinfo + appSb + sLeft);
@@ -117,6 +124,8 @@ $('#up').click(async function () {
 $('#down').click(async function () {
   ws.send(appinfo + appSb + sDown);
 });
+**/
+
 //スイッチ４
 $('#ignition').click(async function () {
   ws.send(appinfo + appSb + sIgnt);

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <%- include('_head', {meta: {title: "オンラインボッチャ管理"}}) %>
+  <body>
+    <div class="wrap">
+      <div class="print">
+        <div class="led">
+          <h3>オンラインボッチャ:管理</h3>
+          <br><br>
+          <form method="POST" action="/change1">
+            <div>
+              <button class="submit" data-action="change1">BC01交代</button>
+            </div>
+          </form>
+          <br>
+          <form method="POST" action="/change2">
+            <div>
+              <button class="submit" data-action="change2">BC02交代</button>
+            </div>
+          </form>
+          <% if (message && message.length !== 0) { %>
+            <div><%= message %></div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -53,12 +53,11 @@ if(!HTMLElement.prototype.hold){
 const btnLeft  = document.querySelector('#left');
 btnLeft.hold(()=>{ws.send(appinfo + appSb + sLeft);},1000);
 
-
-  //交代
-  $('#change').click(async function () {
-    $('#text').val("");
-    $('#flg').val("false");
-  });
+//交代
+$('#change').click(async function () {
+  $('#text').val("");
+  $('#flg').val("false");
+});
 
 //赤色
 $('#red').click(async function () {

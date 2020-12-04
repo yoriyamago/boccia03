@@ -19,7 +19,11 @@ const BC03 = conf.appinfo3;
 app.use(bodyParser.urlencoded({ extended: true }));
 
 var message = "";
-
+/* GET admin page. */
+router.get('/admin', (req, res) => {
+  message = "";
+  res.render('./admin.ejs',{ message});
+});
 /* GET login page. */
 router.get('/', (req, res) => {
   res.render('./login.ejs', { message:"",aikotoba:"" });
@@ -87,12 +91,28 @@ router.post("/boccia", (req, res) => {
   }
 });
 
-/* post logout page. */
+/* post logout. */
 router.post("/logout", (req, res) => {
   var appinfo1 = req.body.appinfo;
   var confOut = JSON.parse(fs.readFileSync(configPath), 'utf8');
   setLogoutInfoFunction(confOut, appinfo1);
   res.redirect('/');
+});
+
+/* post admin:change. */
+router.post("/change1", (req, res) => {
+  var sb = BC01;
+  var confOut = JSON.parse(fs.readFileSync(configPath), 'utf8');
+  setLogoutInfoFunction(confOut, sb);
+  message = BC01 + "解除しました。";
+  res.render('./admin.ejs', { message });
+});
+router.post("/change2", (req, res) => {
+  var sb = BC02;
+  var confOut = JSON.parse(fs.readFileSync(configPath), 'utf8');
+  setLogoutInfoFunction(confOut, sb);
+  message = BC02 + "解除しました。";
+  res.render('./admin.ejs', { message });
 });
 
 //状態チェック

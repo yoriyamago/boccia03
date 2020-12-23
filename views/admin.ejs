@@ -9,20 +9,16 @@
           <br><br>
           <form method="POST" action="/change1">
             <div>
-              <button class="submit" data-action="change1">BC01交代</button>
+              <button class="submit" id="change1">BC01交代</button>
             </div>
           </form>
           <br>
-          <form method="POST" action="/change2">
-            <div>
-              <button class="submit" data-action="change2">BC02交代</button>
-            </div>
-          </form>
           <% if (message && message.length !== 0) { %>
             <div><%= message %></div>
           <% } %>
         </div>
       </div>
     </div>
+    <script src="/javascripts/admin.js"></script>
   </body>
 </html>

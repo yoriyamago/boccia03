@@ -16,6 +16,7 @@
     "ejs": "^2.7.1",
     "express": "~4.16.1",
     "express-session": "^1.17.1",
+    "express-ws": "^4.0.0",
     "flash": "^1.1.0",
     "gulp": "^4.0.2",
     "gulp-express": "^0.3.5",

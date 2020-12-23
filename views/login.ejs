@@ -8,16 +8,16 @@
           <h3>オンラインボッチャへようこそ！</h3>
           <br><br>
           <form method="POST" action="/boccia">
-            <div>
-              <input type="text" id="aikotoba" name="aikotoba"  value="" placeholder="合言葉は？"/>
-              <input type="submit" value="ログイン" class = "Sblue_btn"/>
-            </div>
+              <button id="btnStart1" class = "login_btn" type="submit" formmethod="post">1号機 </button>
+              <input type="hidden" id="loginState1"  name="loginState1" value="<%= loginState1 %>"/>
           </form>
-          <% if (message && message.length !== 0) { %>
-            <div><span class="error"><%= message %></span></div>
-          <% } %>
+          
+    <hr />
+    -----message log-------
+    <div data-name="chat"></div>
         </div>
       </div>
     </div>
+    <script src="/javascripts/login.js"></script>
   </body>
 </html>

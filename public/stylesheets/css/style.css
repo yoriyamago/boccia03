@@ -134,6 +134,36 @@ button.gray_btn:hover {
   background: #0081cca3;
   color: #ffffff;
 }
+
+.login_btn {
+  display: inline-block;
+  width: 110px;
+  padding: 0.8em;
+  font-size: 1.2em;
+  text-align: center;
+  text-decoration: none;
+  color: #ffffff;
+  background: #0081cca3;
+  border: 2px solid #0081cca3;
+  border-radius: 3px;
+  transition: .4s;
+}
+
+.login_btn:hover {
+  background: #ffffff;
+  color: #0081cca3;
+  border: 2px solid #0081cca3;
+  border-radius: 3px;
+  transition: .4s;
+}
+.login_btn:disabled {
+  background: #ccc;
+  color: #ffffff;
+  border: 2px solid #ccc;
+  border-radius: 3px;
+  transition: .4s;
+}
+
 .error {
   color: red;
 }

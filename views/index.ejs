@@ -4,7 +4,7 @@
   <%- include('_head', {meta: {title: "オンラインボッチャ"}}) %>
  
  
-  <input type="hidden" id="appSb" value=<%- data.appSb %>>
+ 
   <input type="hidden" id="textName" value=<%- data.name %>>
   <input type="hidden" id="teamRed" value=<%- data.team.red %>>
   <input type="hidden" id="teamBlue" value=<%- data.team.blue %>>
@@ -14,7 +14,6 @@
   <input type="hidden" id="sUp" value=<%- data.switch.up %>>
   <input type="hidden" id="sDown" value=<%- data.switch.down %>>
   <input type="hidden" id="sIgnt" value=<%- data.switch.ign %>>
-  <input type="hidden" id="flg" value=<%- data.appinfo %>>
 
   <body　oncopy='return false;'>
       <!--文字の表示-->
@@ -24,8 +23,8 @@
             <br><br>
             <h3 class="text-center">ボッチャプレイヤーは君だ！ </h3>
             <form method="POST" action="/logout">
-              <input type="submit" value="交代！"class = "Sblue_btn"/>
-              <input type="hidden" id="appinfo" name="appinfo" value=<%- data.appinfo %>>
+              <input type="submit" id="logout" value="交代！"class = "Sblue_btn"/>
+              <input type="hidden" id="appsb" name="appsb" value=<%- appsb %>>
             </form>
           </div>
           <br><br>

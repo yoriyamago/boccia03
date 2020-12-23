@@ -10,17 +10,15 @@ const session = require("express-session");
 const flash = require("connect-flash");
 const app = express();
 const port = process.env.PORT || 5000;
-
-//const passport = require('./auth');
 const indexRouter = require('./routes/index.js');
 const conf = JSON.parse(fs.readFileSync(path.join(__dirname, 'config.json'), 'utf8'));
-
+//set view
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
+//set engine
 app.engine('htm', require('ejs').renderFile);
 app.engine('html', require('ejs').renderFile);
-
+//app use
 app.use(express.static(__dirname + "/"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -51,15 +49,14 @@ app.use((err, req, res) => {
    }
  });
 
-
+//server create
 var server = http.createServer(app);
 server.listen(port);
-
-console.log("http server listening on %d", port);
-
 var wss = new WebSocketServer({server: server});
+console.log("http server listening on %d", port);
 console.log("websocket server created");
 
+//send message
 wss.on('connection', socket => {
   console.log("connected!!!!");
   socket.on('message', ms => {
